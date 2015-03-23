@@ -1,0 +1,8 @@
+prefix=/home/au/catkin_ws/install
+
+Name: rosaria_teleop
+Description: Description of rosaria_teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/au/catkin_ws/install/lib 
+Requires: 
