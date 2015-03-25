@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="rosaria_teleop" type="teleop_node"
+		name="teleop_node" output="screen"> 		
+	</node>
+</launch>
