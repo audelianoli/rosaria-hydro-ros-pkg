@@ -1,10 +1,10 @@
-#include "RosAriaNode.h"
+#include "RosAria.h"
 
 void RosAriaNode::readParameters()
 {
   // Robot Parameters  
   robot->lock();
-  ros::NodeHandle n_;
+  ros::NodeHandle n_("~");
   if (n_.hasParam("TicksMM"))
   {
     n_.getParam( "TicksMM", TicksMM);
@@ -146,7 +146,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   n = nh;
 
   // !!! port !!!
-  n.param( "port", serial_port, std::string("/dev/ttyUSB0") ); //"192.168.0.192:8101"
+  n.param( "port", serial_port, std::string("/dev/ttyUSB0") );
   ROS_INFO( "RosAria: using port: [%s]", serial_port.c_str() );
 
   n.param("baud", serial_baud, 0);
@@ -176,7 +176,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   // other argmuments (optional) are callbacks, or a boolean "latch" flag (whether to send current data to new
   // subscribers when they subscribe).
   // See ros::NodeHandle API docs.
-  pose_pub = n.advertise<nav_msgs::Odometry>("pose",1000);
+  pose_pub = n.advertise<nav_msgs::Odometry>("/AmigoBot1/pose",1000);
   bumpers_pub = n.advertise<rosaria::BumperState>("bumper_state",1000);
   sonar_pub = n.advertise<sensor_msgs::PointCloud>("sonar", 50,
     boost::bind(&RosAriaNode::sonarConnectCb, this),
