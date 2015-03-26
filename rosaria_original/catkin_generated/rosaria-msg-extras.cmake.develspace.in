@@ -1,2 +1,0 @@
-set(rosaria_MESSAGE_FILES "/home/au/catkin_ws/src/rosaria/rosaria/msg/BumperState.msg")
-set(rosaria_SERVICE_FILES "")
