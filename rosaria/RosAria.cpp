@@ -26,6 +26,8 @@
 
 #include <sstream>
 
+#define PI 3.14159265359
+
 // Node that interfaces between ROS and mobile robot base features via ARIA library. 
 //
 // RosAria uses the roscpp client library, see http://www.ros.org/wiki/roscpp for
@@ -105,13 +107,16 @@ class RosAriaNode
     
     // dynamic_reconfigure
     dynamic_reconfigure::Server<rosaria::RosAriaConfig> *dynamic_reconfigure_server;
+
+    double phi;
+
 };
 
 void RosAriaNode::readParameters()
 {
   // Robot Parameters  
   robot->lock();
-  ros::NodeHandle n_("~");
+  ros::NodeHandle n_;
   if (n_.hasParam("TicksMM"))
   {
     n_.getParam( "TicksMM", TicksMM);
@@ -251,9 +256,10 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
 {
   // read in config options
   n = nh;
+  phi = 0.0;
 
   // !!! port !!!
-  n.param( "port", serial_port, std::string("192.168.0.192:8101") ); //"/dev/ttyUSB0"
+  n.param( "port", serial_port, std::string("/dev/ttyUSB0") ); //"192.168.0.192:8101"
   ROS_INFO( "RosAria: using port: [%s]", serial_port.c_str() );
 
   n.param("baud", serial_baud, 0);
@@ -283,7 +289,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   // other argmuments (optional) are callbacks, or a boolean "latch" flag (whether to send current data to new
   // subscribers when they subscribe).
   // See ros::NodeHandle API docs.
-  pose_pub = n.advertise<nav_msgs::Odometry>("/AmigoBot1/pose",1000);
+  pose_pub = n.advertise<nav_msgs::Odometry>("odom",1000);
   bumpers_pub = n.advertise<rosaria::BumperState>("bumper_state",1000);
   sonar_pub = n.advertise<sensor_msgs::PointCloud>("sonar", 50,
     boost::bind(&RosAriaNode::sonarConnectCb, this),
@@ -307,6 +313,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   disable_srv = n.advertiseService("disable_motors", &RosAriaNode::disable_motors_cb, this);
   
   veltime = ros::Time::now();
+
 }
 
 RosAriaNode::~RosAriaNode()
@@ -480,11 +487,14 @@ void RosAriaNode::publish()
   position.header.stamp = ros::Time::now();
   pose_pub.publish(position);
 
-  ROS_DEBUG("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f", 
+  //double phi = (2 * acos(position.pose.pose.orientation.w)) * 180 / 3.14;
+  phi = tf::getYaw(position.pose.pose.orientation) * 180 / PI;
+
+  ROS_INFO("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f",
     position.header.stamp.toSec(), 
     (double)position.pose.pose.position.x,
     (double)position.pose.pose.position.y,
-    (double)position.pose.pose.orientation.w,
+    (double) phi, //position.pose.pose.orientation.w,
     (double) position.twist.twist.linear.x,
     (double) position.twist.twist.linear.y,
     (double) position.twist.twist.angular.z
