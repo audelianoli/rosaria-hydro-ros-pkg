@@ -259,7 +259,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   phi = 0.0;
 
   // !!! port !!!
-  n.param( "port", serial_port, std::string("/dev/ttyUSB0") ); //"192.168.0.192:8101"
+  n.param( "port", serial_port, std::string("/dev/ttyS0") ); //"192.168.0.192:8101"  //"/dev/ttyUSB0"
   ROS_INFO( "RosAria: using port: [%s]", serial_port.c_str() );
 
   n.param("baud", serial_baud, 0);
@@ -665,7 +665,7 @@ int main( int argc, char** argv )
   printf("INICIALIZANDO ROS/MAIN");
   ros::init(argc,argv, "RosAria");
   printf("NÓ");
-  ros::NodeHandle n(std::string("~"));
+  ros::NodeHandle n;
   printf("INICIALIZANDO ARIA");
   Aria::init();
 
