@@ -87,6 +87,9 @@ class RosAriaNode
 
     //for odom->base_link transform
     tf::TransformBroadcaster odom_broadcaster;
+    //for scan->base_link transform
+    tf::TransformBroadcaster scan_broadcaster;
+
     geometry_msgs::TransformStamped odom_trans;
     //for resolving tf names.
     std::string tf_prefix;
@@ -487,10 +490,9 @@ void RosAriaNode::publish()
   position.header.stamp = ros::Time::now();
   pose_pub.publish(position);
 
-  //double phi = (2 * acos(position.pose.pose.orientation.w)) * 180 / 3.14;
   phi = tf::getYaw(position.pose.pose.orientation) * 180 / PI;
 
-  ROS_INFO("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f",
+  ROS_DEBUG("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f",
     position.header.stamp.toSec(), 
     (double)position.pose.pose.position.x,
     (double)position.pose.pose.position.y,
@@ -513,6 +515,9 @@ void RosAriaNode::publish()
   
   odom_broadcaster.sendTransform(odom_trans);
   
+  // publishing transform scan->base_link
+  scan_broadcaster.sendTransform(tf::StampedTransform(tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0.08, 0.0, 0.17)), ros::Time::now(), "base_link", "base_laser"));
+
   // getStallValue returns 2 bytes with stall bit and bumper bits, packed as (00 00 FrontBumpers RearBumpers)
   int stall = robot->getStallValue();
   unsigned char front_bumpers = (unsigned char)(stall >> 8);

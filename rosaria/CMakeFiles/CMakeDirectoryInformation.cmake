@@ -11,6 +11,7 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
   "/home/au/catkin_ws/devel/include"
+  "rosaria/rosaria/include"
   "/opt/ros/hydro/include"
   "/usr/local/Aria/include"
   )
