@@ -53,10 +53,10 @@ if(EXISTS "/usr/local/Aria/include/Aria.h")
   link_directories(/usr/local/Aria/lib)
 endif()
 
-add_executable(RosAria 
-	RosAriaNode.cpp
-#	src/rosaria_node.cpp
-#	src/RosAriaNode.cpp
+add_executable(RosAriaNode 
+#	RosAria.cpp
+	src/rosaria_node.cpp
+	src/RosAriaNode.cpp
 	)
 add_dependencies(RosAria rosaria_gencfg)
 add_dependencies(RosAria rosaria_gencpp)

@@ -54,9 +54,9 @@ if(EXISTS "/usr/local/Aria/include/Aria.h")
 endif()
 
 add_executable(RosAria 
-	RosAria.cpp
-#	src/rosaria_node.cpp
-#	src/RosAriaNode.cpp
+#	RosAria.cpp
+	src/rosaria_node.cpp
+	src/RosAriaNode.cpp
 	)
 add_dependencies(RosAria rosaria_gencfg)
 add_dependencies(RosAria rosaria_gencpp)

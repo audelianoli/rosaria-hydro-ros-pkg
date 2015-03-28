@@ -6,7 +6,7 @@ RosAriaTeleop::RosAriaTeleop( struct termios &cooked, struct termios &raw, int &
 	raw_( raw ),
 	kfd_( kfd )
 {
-	cmd_vel_pub_ = n_.advertise<geometry_msgs::Twist>("/RosAria/cmd_vel", 1, true);
+	cmd_vel_pub_ = n_.advertise<geometry_msgs::Twist>("/cmd_vel", 1, true);
 	vel_x = 0.0;
 	vel_omega = 0.0;
 
@@ -67,10 +67,10 @@ void RosAriaTeleop::spin()
 			vel_x = vel_x - 0.1;
 			break;
 		case KEYCODE_A:
-			vel_omega = vel_omega + 0.5;
+			vel_omega = vel_omega + 0.3;
 			break;
 		case KEYCODE_D:
-			vel_omega = vel_omega - 0.5;
+			vel_omega = vel_omega - 0.3;
 			break;
 
 		case KEYCODE_SPACE:

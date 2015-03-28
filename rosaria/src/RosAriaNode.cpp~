@@ -144,9 +144,10 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
 {
   // read in config options
   n = nh;
-
+  phi = 0.0;
+  
   // !!! port !!!
-  n.param( "port", serial_port, std::string("/dev/ttyUSB0") ); //"192.168.0.192:8101"
+  n.param( "port", serial_port, std::string("/dev/ttyS0") ); //"192.168.0.192:8101" //"/dev/ttyUSB0"
   ROS_INFO( "RosAria: using port: [%s]", serial_port.c_str() );
 
   n.param("baud", serial_baud, 0);
@@ -176,7 +177,7 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   // other argmuments (optional) are callbacks, or a boolean "latch" flag (whether to send current data to new
   // subscribers when they subscribe).
   // See ros::NodeHandle API docs.
-  pose_pub = n.advertise<nav_msgs::Odometry>("/AmigoBot1/pose",1000);
+  pose_pub = n.advertise<nav_msgs::Odometry>("odom",1000);
   bumpers_pub = n.advertise<rosaria::BumperState>("bumper_state",1000);
   sonar_pub = n.advertise<sensor_msgs::PointCloud>("sonar", 50,
     boost::bind(&RosAriaNode::sonarConnectCb, this),
@@ -373,11 +374,13 @@ void RosAriaNode::publish()
   position.header.stamp = ros::Time::now();
   pose_pub.publish(position);
 
+  phi = tf::getYaw(position.pose.pose.orientation) * 180 / PI;
+
   ROS_DEBUG("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f", 
     position.header.stamp.toSec(), 
     (double)position.pose.pose.position.x,
     (double)position.pose.pose.position.y,
-    (double)position.pose.pose.orientation.w,
+    (double) phi, //position.pose.pose.orientation.w,
     (double) position.twist.twist.linear.x,
     (double) position.twist.twist.linear.y,
     (double) position.twist.twist.angular.z

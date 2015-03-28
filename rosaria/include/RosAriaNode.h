@@ -26,6 +26,8 @@
 
 #include <sstream>
 
+#define PI 3.14159265359
+
 // Node that interfaces between ROS and mobile robot base features via ARIA library. 
 //
 // RosAria uses the roscpp client library, see http://www.ros.org/wiki/roscpp for
@@ -85,6 +87,10 @@ class RosAriaNode
 
     //for odom->base_link transform
     tf::TransformBroadcaster odom_broadcaster;
+
+    //for scan->base_link transform
+    tf::TransformBroadcaster scan_broadcaster;
+
     geometry_msgs::TransformStamped odom_trans;
     //for resolving tf names.
     std::string tf_prefix;
@@ -105,4 +111,6 @@ class RosAriaNode
     
     // dynamic_reconfigure
     dynamic_reconfigure::Server<rosaria::RosAriaConfig> *dynamic_reconfigure_server;
+
+    double phi;
 };

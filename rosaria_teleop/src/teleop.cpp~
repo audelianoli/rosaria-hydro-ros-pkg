@@ -67,10 +67,10 @@ void RosAriaTeleop::spin()
 			vel_x = vel_x - 0.1;
 			break;
 		case KEYCODE_A:
-			vel_omega = vel_omega + 0.5;
+			vel_omega = vel_omega + 0.3;
 			break;
 		case KEYCODE_D:
-			vel_omega = vel_omega - 0.5;
+			vel_omega = vel_omega - 0.3;
 			break;
 
 		case KEYCODE_SPACE:

@@ -24,6 +24,9 @@ class RosAriaTeleop
 
     geometry_msgs::Twist cmd_vel_msg_;
 
+    double vel_x;
+    double vel_omega;
+
     struct termios cooked_, raw_;
     int kfd_;
 

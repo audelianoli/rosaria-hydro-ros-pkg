@@ -18,7 +18,7 @@ class RosAriaTeleop
     ~RosAriaTeleop();
     
   private:
-    ros::NodeHandle n_;
+    ros::NodeHandle n_; 
     ros::Publisher cmd_vel_pub_;
     ros::Time first_publish_, last_publish_;
 
