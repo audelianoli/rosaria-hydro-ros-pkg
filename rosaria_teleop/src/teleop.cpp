@@ -28,7 +28,7 @@ void RosAriaTeleop::publish( double vel_x, double vel_omega )
 void RosAriaTeleop::spin()
 {
 	char c;
-	double vel_x, vel_y, vel_omega;
+	//double vel_x, vel_y, vel_omega;
 
 	// Get the console in raw mode
 	tcgetattr( kfd_, &cooked_ );
@@ -61,16 +61,40 @@ void RosAriaTeleop::spin()
 		{
 		// Walking
 		case KEYCODE_W:
-			vel_x = vel_x + 0.1;
+			if(vel_x > 1.0)
+			{
+				vel_x = 1.0;
+			}else
+			{
+				vel_x = vel_x + 0.1;
+			}
 			break;
 		case KEYCODE_S:
-			vel_x = vel_x - 0.1;
+			if(vel_x < - 1.0)
+			{
+				vel_x = - 1.0;
+			}else
+			{
+				vel_x = vel_x - 0.1;
+			}
 			break;
 		case KEYCODE_A:
-			vel_omega = vel_omega + 0.3;
+			if(vel_omega > 0.5)
+			{
+				vel_omega = 0.6;//vel_omega + 0.3;
+			}else
+			{
+				vel_omega = vel_omega + 0.3;
+			}
 			break;
 		case KEYCODE_D:
-			vel_omega = vel_omega - 0.3;
+			if(vel_omega < 0.5)
+			{
+				vel_omega = - 0.6;//vel_omega - 0.3;
+			}else
+			{
+				vel_omega = vel_omega - 0.3;
+			}
 			break;
 
 		case KEYCODE_SPACE:
@@ -97,6 +121,8 @@ void RosAriaTeleop::watchdog()
 	boost::mutex::scoped_lock lock( publish_mutex_ );
 	if ((ros::Time::now() > last_publish_ + ros::Duration(0.15)) &&
 			(ros::Time::now() > first_publish_ + ros::Duration(0.50)))
-		publish(0.0, 0.0);
+		publish( vel_x, 0.0 );
+
+		//publish(0.0, 0.0);
 }
 

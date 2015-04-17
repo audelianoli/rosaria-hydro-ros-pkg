@@ -16,7 +16,7 @@ class RosAriaTeleop
   public:
     RosAriaTeleop( struct termios &cooked, struct termios &raw, int &kfd );
     ~RosAriaTeleop();
-    
+
   private:
     ros::NodeHandle n_; 
     ros::Publisher cmd_vel_pub_;
