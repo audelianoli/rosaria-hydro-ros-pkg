@@ -145,7 +145,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(rosaria_EXPORTED_TARGETS "rosaria_gencfg;rosaria_generate_messages_cpp;rosaria_generate_messages_lisp;rosaria_generate_messages_py")
+set(rosaria_EXPORTED_TARGETS "rosaria_gencfg;rosaria_generate_messages_cpp;rosaria_generate_messages_eus;rosaria_generate_messages_lisp;rosaria_generate_messages_py;rosaria_generate_messages_rb")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${rosaria_EXPORTED_TARGETS})
   if(NOT TARGET ${t})

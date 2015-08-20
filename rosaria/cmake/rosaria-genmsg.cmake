@@ -6,13 +6,15 @@ set(MSG_I_FLAGS "-Irosaria:/home/au/catkin_ws/src/rosaria/rosaria/msg;-Igeometry
 
 # Find all generators
 find_package(gencpp REQUIRED)
+find_package(geneus REQUIRED)
 find_package(genlisp REQUIRED)
 find_package(genpy REQUIRED)
+find_package(genrb REQUIRED)
 
 add_custom_target(rosaria_generate_messages ALL)
 
 #
-#  langs = gencpp;genlisp;genpy
+#  langs = gencpp;geneus;genlisp;genpy;genrb
 #
 
 ### Section generating for lang: gencpp
@@ -43,6 +45,35 @@ add_dependencies(rosaria_gencpp rosaria_generate_messages_cpp)
 
 # register target for catkin_package(EXPORTED_TARGETS)
 list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS rosaria_generate_messages_cpp)
+
+### Section generating for lang: geneus
+### Generating Messages
+_generate_msg_eus(rosaria
+  "/home/au/catkin_ws/src/rosaria/rosaria/msg/BumperState.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rosaria
+)
+
+### Generating Services
+
+### Generating Module File
+_generate_module_eus(rosaria
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rosaria
+  "${ALL_GEN_OUTPUT_FILES_eus}"
+)
+
+add_custom_target(rosaria_generate_messages_eus
+  DEPENDS ${ALL_GEN_OUTPUT_FILES_eus}
+)
+add_dependencies(rosaria_generate_messages rosaria_generate_messages_eus)
+
+# target for backward compatibility
+add_custom_target(rosaria_geneus)
+add_dependencies(rosaria_geneus rosaria_generate_messages_eus)
+
+# register target for catkin_package(EXPORTED_TARGETS)
+list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS rosaria_generate_messages_eus)
 
 ### Section generating for lang: genlisp
 ### Generating Messages
@@ -102,6 +133,35 @@ add_dependencies(rosaria_genpy rosaria_generate_messages_py)
 # register target for catkin_package(EXPORTED_TARGETS)
 list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS rosaria_generate_messages_py)
 
+### Section generating for lang: genrb
+### Generating Messages
+_generate_msg_rb(rosaria
+  "/home/au/catkin_ws/src/rosaria/rosaria/msg/BumperState.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genrb_INSTALL_DIR}/rosaria
+)
+
+### Generating Services
+
+### Generating Module File
+_generate_module_rb(rosaria
+  ${CATKIN_DEVEL_PREFIX}/${genrb_INSTALL_DIR}/rosaria
+  "${ALL_GEN_OUTPUT_FILES_rb}"
+)
+
+add_custom_target(rosaria_generate_messages_rb
+  DEPENDS ${ALL_GEN_OUTPUT_FILES_rb}
+)
+add_dependencies(rosaria_generate_messages rosaria_generate_messages_rb)
+
+# target for backward compatibility
+add_custom_target(rosaria_genrb)
+add_dependencies(rosaria_genrb rosaria_generate_messages_rb)
+
+# register target for catkin_package(EXPORTED_TARGETS)
+list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS rosaria_generate_messages_rb)
+
 
 
 if(gencpp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/rosaria)
@@ -113,6 +173,16 @@ if(gencpp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/ro
 endif()
 add_dependencies(rosaria_generate_messages_cpp geometry_msgs_generate_messages_cpp)
 add_dependencies(rosaria_generate_messages_cpp std_msgs_generate_messages_cpp)
+
+if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rosaria)
+  # install generated code
+  install(
+    DIRECTORY ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/rosaria
+    DESTINATION ${geneus_INSTALL_DIR}
+  )
+endif()
+add_dependencies(rosaria_generate_messages_eus geometry_msgs_generate_messages_eus)
+add_dependencies(rosaria_generate_messages_eus std_msgs_generate_messages_eus)
 
 if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/rosaria)
   # install generated code
@@ -134,3 +204,13 @@ if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/rosa
 endif()
 add_dependencies(rosaria_generate_messages_py geometry_msgs_generate_messages_py)
 add_dependencies(rosaria_generate_messages_py std_msgs_generate_messages_py)
+
+if(genrb_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genrb_INSTALL_DIR}/rosaria)
+  # install generated code
+  install(
+    DIRECTORY ${CATKIN_DEVEL_PREFIX}/${genrb_INSTALL_DIR}/rosaria
+    DESTINATION ${genrb_INSTALL_DIR}
+  )
+endif()
+add_dependencies(rosaria_generate_messages_rb geometry_msgs_generate_messages_rb)
+add_dependencies(rosaria_generate_messages_rb std_msgs_generate_messages_rb)

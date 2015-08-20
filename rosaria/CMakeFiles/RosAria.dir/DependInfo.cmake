@@ -4,7 +4,8 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/au/catkin_ws/src/rosaria/rosaria/RosAria.cpp" "/home/au/catkin_ws/src/rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o"
+  "/home/au/catkin_ws/src/rosaria/rosaria/src/RosAriaNode.cpp" "/home/au/catkin_ws/src/rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o"
+  "/home/au/catkin_ws/src/rosaria/rosaria/src/rosaria_node.cpp" "/home/au/catkin_ws/src/rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

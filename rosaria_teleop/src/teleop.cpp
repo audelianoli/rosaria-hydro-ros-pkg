@@ -88,7 +88,7 @@ void RosAriaTeleop::spin()
 			}
 			break;
 		case KEYCODE_D:
-			if(vel_omega < 0.5)
+			if(vel_omega < - 0.5)
 			{
 				vel_omega = - 0.6;//vel_omega - 0.3;
 			}else
@@ -122,6 +122,7 @@ void RosAriaTeleop::watchdog()
 	if ((ros::Time::now() > last_publish_ + ros::Duration(0.15)) &&
 			(ros::Time::now() > first_publish_ + ros::Duration(0.50)))
 		publish( vel_x, 0.0 );
+		vel_omega = 0.0;
 
 		//publish(0.0, 0.0);
 }

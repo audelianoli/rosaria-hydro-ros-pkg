@@ -31,6 +31,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/au/catkin_ws/src
 
@@ -46,37 +49,62 @@ include rosaria/rosaria/CMakeFiles/RosAria.dir/progress.make
 # Include the compile flags for this target's objects.
 include rosaria/rosaria/CMakeFiles/RosAria.dir/flags.make
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o: rosaria/rosaria/CMakeFiles/RosAria.dir/flags.make
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o: rosaria/rosaria/RosAria.cpp
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o: rosaria/rosaria/CMakeFiles/RosAria.dir/flags.make
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o: rosaria/rosaria/src/rosaria_node.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/au/catkin_ws/src/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o"
-	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -o CMakeFiles/RosAria.dir/RosAria.cpp.o -c /home/au/catkin_ws/src/rosaria/rosaria/RosAria.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -o CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o -c /home/au/catkin_ws/src/rosaria/rosaria/src/rosaria_node.cpp
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RosAria.dir/RosAria.cpp.i"
-	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -E /home/au/catkin_ws/src/rosaria/rosaria/RosAria.cpp > CMakeFiles/RosAria.dir/RosAria.cpp.i
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RosAria.dir/src/rosaria_node.cpp.i"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -E /home/au/catkin_ws/src/rosaria/rosaria/src/rosaria_node.cpp > CMakeFiles/RosAria.dir/src/rosaria_node.cpp.i
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RosAria.dir/RosAria.cpp.s"
-	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -S /home/au/catkin_ws/src/rosaria/rosaria/RosAria.cpp -o CMakeFiles/RosAria.dir/RosAria.cpp.s
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RosAria.dir/src/rosaria_node.cpp.s"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -S /home/au/catkin_ws/src/rosaria/rosaria/src/rosaria_node.cpp -o CMakeFiles/RosAria.dir/src/rosaria_node.cpp.s
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.requires:
-.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.requires
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.requires:
+.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.requires
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.provides: rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.requires
-	$(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.provides.build
-.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.provides
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.provides: rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.requires
+	$(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.provides.build
+.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.provides
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.provides.build: rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.provides.build: rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o: rosaria/rosaria/CMakeFiles/RosAria.dir/flags.make
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o: rosaria/rosaria/src/RosAriaNode.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/au/catkin_ws/src/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -o CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o -c /home/au/catkin_ws/src/rosaria/rosaria/src/RosAriaNode.cpp
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.i"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -E /home/au/catkin_ws/src/rosaria/rosaria/src/RosAriaNode.cpp > CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.i
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.s"
+	cd /home/au/catkin_ws/src/rosaria/rosaria && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -fPIC -S /home/au/catkin_ws/src/rosaria/rosaria/src/RosAriaNode.cpp -o CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.s
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.requires:
+.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.requires
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.provides: rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.requires
+	$(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.provides.build
+.PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.provides
+
+rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.provides.build: rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o
 
 # Object files for target RosAria
 RosAria_OBJECTS = \
-"CMakeFiles/RosAria.dir/RosAria.cpp.o"
+"CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o" \
+"CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o"
 
 # External object files for target RosAria
 RosAria_EXTERNAL_OBJECTS =
 
-/home/au/catkin_ws/devel/lib/rosaria/RosAria: rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o
+/home/au/catkin_ws/devel/lib/rosaria/RosAria: rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o
+/home/au/catkin_ws/devel/lib/rosaria/RosAria: rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o
 /home/au/catkin_ws/devel/lib/rosaria/RosAria: /opt/ros/hydro/lib/libtf.so
 /home/au/catkin_ws/devel/lib/rosaria/RosAria: /opt/ros/hydro/lib/libtf2_ros.so
 /home/au/catkin_ws/devel/lib/rosaria/RosAria: /opt/ros/hydro/lib/libactionlib.so
@@ -113,7 +141,8 @@ RosAria_EXTERNAL_OBJECTS =
 rosaria/rosaria/CMakeFiles/RosAria.dir/build: /home/au/catkin_ws/devel/lib/rosaria/RosAria
 .PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/build
 
-rosaria/rosaria/CMakeFiles/RosAria.dir/requires: rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o.requires
+rosaria/rosaria/CMakeFiles/RosAria.dir/requires: rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o.requires
+rosaria/rosaria/CMakeFiles/RosAria.dir/requires: rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o.requires
 .PHONY : rosaria/rosaria/CMakeFiles/RosAria.dir/requires
 
 rosaria/rosaria/CMakeFiles/RosAria.dir/clean:

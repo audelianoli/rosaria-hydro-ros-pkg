@@ -82,6 +82,7 @@ void RosAriaNode::dynamic_reconfigureCB(rosaria::RosAriaConfig &config, uint32_t
   {
     ROS_INFO("Setting TransAccel from Dynamic Reconfigure: %d", value);
     robot->setTransAccel(value);
+
   }
   
   value = config.trans_decel * 1000;
@@ -89,6 +90,7 @@ void RosAriaNode::dynamic_reconfigureCB(rosaria::RosAriaConfig &config, uint32_t
   {
     ROS_INFO("Setting TransDecel from Dynamic Reconfigure: %d", value);
     robot->setTransDecel(value);
+
   } 
   
   value = config.lat_accel * 1000;
@@ -147,7 +149,9 @@ RosAriaNode::RosAriaNode(ros::NodeHandle nh) :
   phi = 0.0;
   
   // !!! port !!!
-  n.param( "port", serial_port, std::string("/dev/ttyS0") ); //"192.168.0.192:8101" //"/dev/ttyUSB0"
+  //n.param( "port", serial_port, std::string("192.168.0.192:8101") );
+  n.param( "port", serial_port, std::string("/dev/ttyUSB0") );  //"/dev/S0"
+
   ROS_INFO( "RosAria: using port: [%s]", serial_port.c_str() );
 
   n.param("baud", serial_baud, 0);
@@ -374,9 +378,9 @@ void RosAriaNode::publish()
   position.header.stamp = ros::Time::now();
   pose_pub.publish(position);
 
-  phi = tf::getYaw(position.pose.pose.orientation) * 180 / PI;
+  phi = tf::getYaw(position.pose.pose.orientation) * 180 / PI; //pos.getTH()
 
-  ROS_DEBUG("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f", 
+  ROS_INFO("RosAria: publish: (time %f) pose x: %f, y: %f, angle: %f; linear vel x: %f, y: %f; angular vel z: %f",
     position.header.stamp.toSec(), 
     (double)position.pose.pose.position.x,
     (double)position.pose.pose.position.y,
@@ -400,7 +404,7 @@ void RosAriaNode::publish()
   odom_broadcaster.sendTransform(odom_trans);
   
   // publishing transform scan->base_link
-  scan_broadcaster.sendTransform(tf::StampedTransform(tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0.08, 0.0, 0.17)), ros::Time::now(), "base_link", "scan"));
+  //scan_broadcaster.sendTransform(tf::StampedTransform(tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0.08, 0.0, 0.17)), ros::Time::now(), "base_link", "scan"));
 
   // getStallValue returns 2 bytes with stall bit and bumper bits, packed as (00 00 FrontBumpers RearBumpers)
   int stall = robot->getStallValue();
@@ -536,10 +540,12 @@ void
 RosAriaNode::cmdvel_cb( const geometry_msgs::TwistConstPtr &msg)
 {
   veltime = ros::Time::now();
-  ROS_INFO( "new speed: [%0.2f,%0.2f](%0.3f)", msg->linear.x*1e3, msg->angular.z, veltime.toSec() );
+  //ROS_INFO( "new speed: [%0.2f,%0.2f](%0.3f)", msg->linear.x*1e3, msg->angular.z, veltime.toSec() );
 
   robot->lock();
   robot->setVel(msg->linear.x*1e3);
+  robot->setTransAccel(500);
+  robot->setTransDecel(500);
   if(robot->hasLatVel())
     robot->setLatVel(msg->linear.y*1e3);
   robot->setRotVel(msg->angular.z*180/M_PI);

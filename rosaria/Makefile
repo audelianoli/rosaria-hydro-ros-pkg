@@ -35,6 +35,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/au/catkin_ws/src
 
@@ -46,8 +49,8 @@ CMAKE_BINARY_DIR = /home/au/catkin_ws/src
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -217,6 +220,20 @@ rosaria_generate_messages_cpp/fast:
 .PHONY : rosaria_generate_messages_cpp/fast
 
 # Convenience name for target.
+rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/rule:
+	cd /home/au/catkin_ws/src && $(MAKE) -f CMakeFiles/Makefile2 rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/rule
+.PHONY : rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosaria_generate_messages_eus: rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/rule
+.PHONY : rosaria_generate_messages_eus
+
+# fast build rule for target.
+rosaria_generate_messages_eus/fast:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_generate_messages_eus.dir/build
+.PHONY : rosaria_generate_messages_eus/fast
+
+# Convenience name for target.
 rosaria/rosaria/CMakeFiles/rosaria_generate_messages_lisp.dir/rule:
 	cd /home/au/catkin_ws/src && $(MAKE) -f CMakeFiles/Makefile2 rosaria/rosaria/CMakeFiles/rosaria_generate_messages_lisp.dir/rule
 .PHONY : rosaria/rosaria/CMakeFiles/rosaria_generate_messages_lisp.dir/rule
@@ -243,6 +260,34 @@ rosaria_generate_messages_py: rosaria/rosaria/CMakeFiles/rosaria_generate_messag
 rosaria_generate_messages_py/fast:
 	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_generate_messages_py.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_generate_messages_py.dir/build
 .PHONY : rosaria_generate_messages_py/fast
+
+# Convenience name for target.
+rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/rule:
+	cd /home/au/catkin_ws/src && $(MAKE) -f CMakeFiles/Makefile2 rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/rule
+.PHONY : rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/rule
+
+# Convenience name for target.
+rosaria_generate_messages_rb: rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/rule
+.PHONY : rosaria_generate_messages_rb
+
+# fast build rule for target.
+rosaria_generate_messages_rb/fast:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_generate_messages_rb.dir/build
+.PHONY : rosaria_generate_messages_rb/fast
+
+# Convenience name for target.
+rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/rule:
+	cd /home/au/catkin_ws/src && $(MAKE) -f CMakeFiles/Makefile2 rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/rule
+.PHONY : rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/rule
+
+# Convenience name for target.
+rosaria_geneus: rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/rule
+.PHONY : rosaria_geneus
+
+# fast build rule for target.
+rosaria_geneus/fast:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_geneus.dir/build
+.PHONY : rosaria_geneus/fast
 
 # Convenience name for target.
 rosaria/rosaria/CMakeFiles/rosaria_genlisp.dir/rule:
@@ -272,29 +317,67 @@ rosaria_genpy/fast:
 	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_genpy.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_genpy.dir/build
 .PHONY : rosaria_genpy/fast
 
-RosAria.o: RosAria.cpp.o
-.PHONY : RosAria.o
+# Convenience name for target.
+rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/rule:
+	cd /home/au/catkin_ws/src && $(MAKE) -f CMakeFiles/Makefile2 rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/rule
+.PHONY : rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/rule
+
+# Convenience name for target.
+rosaria_genrb: rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/rule
+.PHONY : rosaria_genrb
+
+# fast build rule for target.
+rosaria_genrb/fast:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/build.make rosaria/rosaria/CMakeFiles/rosaria_genrb.dir/build
+.PHONY : rosaria_genrb/fast
+
+src/RosAriaNode.o: src/RosAriaNode.cpp.o
+.PHONY : src/RosAriaNode.o
 
 # target to build an object file
-RosAria.cpp.o:
-	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.o
-.PHONY : RosAria.cpp.o
+src/RosAriaNode.cpp.o:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o
+.PHONY : src/RosAriaNode.cpp.o
 
-RosAria.i: RosAria.cpp.i
-.PHONY : RosAria.i
+src/RosAriaNode.i: src/RosAriaNode.cpp.i
+.PHONY : src/RosAriaNode.i
 
 # target to preprocess a source file
-RosAria.cpp.i:
-	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.i
-.PHONY : RosAria.cpp.i
+src/RosAriaNode.cpp.i:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.i
+.PHONY : src/RosAriaNode.cpp.i
 
-RosAria.s: RosAria.cpp.s
-.PHONY : RosAria.s
+src/RosAriaNode.s: src/RosAriaNode.cpp.s
+.PHONY : src/RosAriaNode.s
 
 # target to generate assembly for a file
-RosAria.cpp.s:
-	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/RosAria.cpp.s
-.PHONY : RosAria.cpp.s
+src/RosAriaNode.cpp.s:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.s
+.PHONY : src/RosAriaNode.cpp.s
+
+src/rosaria_node.o: src/rosaria_node.cpp.o
+.PHONY : src/rosaria_node.o
+
+# target to build an object file
+src/rosaria_node.cpp.o:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o
+.PHONY : src/rosaria_node.cpp.o
+
+src/rosaria_node.i: src/rosaria_node.cpp.i
+.PHONY : src/rosaria_node.i
+
+# target to preprocess a source file
+src/rosaria_node.cpp.i:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.i
+.PHONY : src/rosaria_node.cpp.i
+
+src/rosaria_node.s: src/rosaria_node.cpp.s
+.PHONY : src/rosaria_node.s
+
+# target to generate assembly for a file
+src/rosaria_node.cpp.s:
+	cd /home/au/catkin_ws/src && $(MAKE) -f rosaria/rosaria/CMakeFiles/RosAria.dir/build.make rosaria/rosaria/CMakeFiles/RosAria.dir/src/rosaria_node.cpp.s
+.PHONY : src/rosaria_node.cpp.s
 
 # Help Target
 help:
@@ -313,14 +396,21 @@ help:
 	@echo "... rosaria_gencpp"
 	@echo "... rosaria_generate_messages"
 	@echo "... rosaria_generate_messages_cpp"
+	@echo "... rosaria_generate_messages_eus"
 	@echo "... rosaria_generate_messages_lisp"
 	@echo "... rosaria_generate_messages_py"
+	@echo "... rosaria_generate_messages_rb"
+	@echo "... rosaria_geneus"
 	@echo "... rosaria_genlisp"
 	@echo "... rosaria_genpy"
+	@echo "... rosaria_genrb"
 	@echo "... test"
-	@echo "... RosAria.o"
-	@echo "... RosAria.i"
-	@echo "... RosAria.s"
+	@echo "... src/RosAriaNode.o"
+	@echo "... src/RosAriaNode.i"
+	@echo "... src/RosAriaNode.s"
+	@echo "... src/rosaria_node.o"
+	@echo "... src/rosaria_node.i"
+	@echo "... src/rosaria_node.s"
 .PHONY : help
 
 

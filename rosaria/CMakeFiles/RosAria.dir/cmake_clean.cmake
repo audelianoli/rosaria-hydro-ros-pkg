@@ -1,5 +1,6 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/RosAria.dir/RosAria.cpp.o"
+  "CMakeFiles/RosAria.dir/src/rosaria_node.cpp.o"
+  "CMakeFiles/RosAria.dir/src/RosAriaNode.cpp.o"
   "/home/au/catkin_ws/devel/lib/rosaria/RosAria.pdb"
   "/home/au/catkin_ws/devel/lib/rosaria/RosAria"
 )

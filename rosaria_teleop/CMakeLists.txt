@@ -104,7 +104,7 @@ ${Boost_INCLUDE_DIRS})
 # )
 
 ## Declare a cpp executable
-add_executable(rosaria_teleop_node 
+add_executable(rosaria_teleop 
 		src/teleop_node.cpp
 		src/teleop.cpp
 		)
@@ -114,7 +114,7 @@ add_executable(rosaria_teleop_node
 # add_dependencies(rosaria_teleop_node rosaria_teleop_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(rosaria_teleop_node
+target_link_libraries(rosaria_teleop
   ${catkin_LIBRARIES}
   )
 
